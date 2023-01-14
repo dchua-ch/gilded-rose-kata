@@ -6,18 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
-    /**
-     *
-     */
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    /**
-     *
-     */
+   
     private static final String AGED_BRIE = "Aged Brie";
-    /**
-     *
-     */
+
     private static final String FOO = "foo";
+
+    private static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
 
 
     void baseTest( 
@@ -74,6 +69,16 @@ class GildedRoseTest {
     }
 
     @Test
+    void passedSellByDateTestNonNegativeQualityTest() {
+        final int initialSellIn = 0;
+        final int initialQuality = 0;
+        baseTest(FOO,
+                 initialSellIn,
+                 initialSellIn-1,
+                 initialQuality,
+                 initialQuality);
+    }
+    @Test
     void agedBrieTest() {
         final int initialSellIn = 1;
         final int initialQuality = 10;
@@ -99,8 +104,20 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityNotAboveFiftyTest() {
+    void agedBrieQualityNotAboveFiftyTest() {
         final int initialSellIn = 1;
+        final int initialQuality = 50;
+
+        baseTest(AGED_BRIE,
+                initialSellIn,
+                initialSellIn-1,
+                initialQuality,
+                initialQuality);
+    }
+
+    @Test
+    void agedBriePassedSellByQualityNotAboveFiftyTest() {
+        final int initialSellIn = 0;
         final int initialQuality = 50;
 
         baseTest(AGED_BRIE,
@@ -125,7 +142,8 @@ class GildedRoseTest {
 
     @Test
     void sulfurasPassedSellByTest() {
-        final int initialSellIn = 0;
+        // Must initialize sellIn to -1 as it won't be decremented for SULFURAS
+        final int initialSellIn = -1;
         final int initialQuality = 80;
 
         baseTest(SULFURAS,
@@ -134,5 +152,100 @@ class GildedRoseTest {
                 initialQuality,
                 initialQuality);
     }
+
+    @Test
+    void backstagePassMoreThan10DaysTest() {
+        final int initialSellIn = 11;
+        final int initialQuality = 20;
+        // If sell in more than 10 days, quality increments by 1
+        baseTest(BACKSTAGE_PASS,
+                initialSellIn,
+                initialSellIn - 1,
+                initialQuality,
+                initialQuality + 1);
+    }
+
+    @Test
+    void backstagePassMoreThan10DaysQualityNotAbove50Test() {
+        final int initialSellIn = 11;
+     
+        baseTest(BACKSTAGE_PASS, 
+        initialSellIn,
+        initialSellIn - 1,
+        50,
+        50);
+
+    }
+
+    @Test
+    void backstagePass10DaysOrLessTest() {
+        final int initialQuality = 20;
+        for(int initialSellIn = 6; initialSellIn <= 10 ; initialSellIn++) {
+            baseTest(BACKSTAGE_PASS, 
+                    initialSellIn,
+                    initialSellIn - 1,
+                    initialQuality,
+                    initialQuality + 2);
+        }
+    }
+
+    @Test
+    void backstagePass10DaysOrLessQualityNotAbove50Test() {
+        for(int initialSellIn = 6; initialSellIn <= 10 ; initialSellIn++) {
+            baseTest(BACKSTAGE_PASS, 
+                    initialSellIn,
+                    initialSellIn - 1,
+                    49,
+                    50);
+        }
+    }
+
+    @Test
+    void backstagePass5DaysOrLessTest() {
+        final int initialQuality = 20;
+        for(int initialSellIn = 1; initialSellIn <= 5 ; initialSellIn++) {
+            baseTest(BACKSTAGE_PASS, 
+                    initialSellIn,
+                    initialSellIn - 1,
+                    initialQuality,
+                    initialQuality + 3);
+        }
+    }
+
+    @Test
+    void backstagePass5DaysOrLessQualityNotAbove50Test() {
+        for(int initialSellIn = 1; initialSellIn <= 5 ; initialSellIn++) {
+            baseTest(BACKSTAGE_PASS, 
+            initialSellIn,
+            initialSellIn - 1,
+            48,
+            50);
+        }
+    }
+
+
+    @Test
+    void backstagePassAfterConcertTest() {
+        final int initialSellIn = 0;
+        final int initialQuality = 20;
+        baseTest(BACKSTAGE_PASS, 
+                initialSellIn,
+                initialSellIn - 1,
+                initialQuality,
+                0);
+    }
+
+    @Test
+    void testToString() {
+        final int initialSellIn = 0;
+        final int initialQuality = 20;
+
+        Item item = new Item(FOO,initialSellIn,initialQuality);
+
+        assertEquals(FOO + ", " + String.valueOf(initialSellIn) + ", " + String.valueOf(initialQuality),
+                item.toString());
+    }
+
+
 
 }
