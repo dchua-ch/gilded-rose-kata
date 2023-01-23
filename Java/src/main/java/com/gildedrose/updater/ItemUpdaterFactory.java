@@ -9,6 +9,8 @@ public class ItemUpdaterFactory {
 
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 
+    private static final String CONJURED = "Conjured";
+
     public ItemUpdater createItemUpdater(Item item) {
 
         switch (item.name) {
@@ -18,6 +20,8 @@ public class ItemUpdaterFactory {
                 return new AgedBrieUpdater(item);
             case SULFURAS:
                 return new SulfurasUpdater(item);
+            case CONJURED:
+                return new ConjuredItemUpdater(item);
             default:
                 return new DefaultItemUpdater(item);
         }
