@@ -2,6 +2,10 @@ package com.gildedrose;
 
 class GildedRose {
 
+    private static final int MAX_QUALITY = 50;
+
+    private static final int MIN_QUALITY = 0;
+
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
   
     private static final String AGED_BRIE = "Aged Brie";
@@ -13,6 +17,26 @@ class GildedRose {
         this.items = items;
     }
 
+    private void incrementQuality(Item item, int amount) {
+        for (int i = 0; i < amount; i++) {
+            item.quality++;
+            if (item.quality > MAX_QUALITY) {
+                item.quality--;
+                return;
+            }
+        }
+    }
+
+    private void decrementQuality(Item item, int amount) {
+        for(int i = 0; i < amount; i++) {
+            item.quality--;
+            if (item.quality < MIN_QUALITY) {
+                item.quality++;
+                return;
+            }
+        }
+    }
+
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals(SULFURAS)) {
@@ -20,15 +44,15 @@ class GildedRose {
             }
 
             if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                if(items[i].quality >= 50) {
+                if(items[i].quality >= MAX_QUALITY) {
                     break;
                 }
                 else if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
-                    items[i].quality += 2;   
+                    incrementQuality(items[i],2);  
                 }
 
                 else if (items[i].sellIn < 5 && items[i].sellIn >= 0) {
-                    items[i].quality += 3;
+                    incrementQuality(items[i],3); 
                 }
 
                 else if (items[i].sellIn < 0) {
@@ -36,23 +60,19 @@ class GildedRose {
                 }
 
                 else {
-                    items[i].quality++;
-                }
-
-                if (items[i].quality > 50) {
-                    items[i].quality = 50;
+                    incrementQuality(items[i],1); 
                 }
             }
 
             else if (items[i].name.equals(AGED_BRIE)) {
-                if(items[i].quality >= 50) {
+                if(items[i].quality >= MAX_QUALITY) {
                     break;
                 }
                 else if(items[i].sellIn < 0) {
-                    items[i].quality += 2;
+                    incrementQuality(items[i],2); 
                 }
                 else {
-                    items[i].quality++;
+                    incrementQuality(items[i],1);
                 }
             }
 
@@ -65,9 +85,9 @@ class GildedRose {
                     break;
                 }
                 else if(items[i].sellIn < 0) {
-                    items[i].quality -= 2;
+                    decrementQuality(items[i], 2);
                 } else {
-                    items[i].quality = items[i].quality - 1;
+                    decrementQuality(items[i], 1);
                 }
             }
         }

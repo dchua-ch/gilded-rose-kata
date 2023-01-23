@@ -71,12 +71,12 @@ class GildedRoseTest {
     @Test
     void passedSellByDateTestNonNegativeQualityTest() {
         final int initialSellIn = 0;
-        final int initialQuality = 0;
+        final int initialQuality = 1;
         baseTest(FOO,
                  initialSellIn,
                  initialSellIn-1,
                  initialQuality,
-                 initialQuality);
+                 0);
     }
     @Test
     void agedBrieTest() {
@@ -118,13 +118,13 @@ class GildedRoseTest {
     @Test
     void agedBriePassedSellByQualityNotAboveFiftyTest() {
         final int initialSellIn = 0;
-        final int initialQuality = 50;
+        final int initialQuality = 49;
 
         baseTest(AGED_BRIE,
                 initialSellIn,
                 initialSellIn-1,
                 initialQuality,
-                initialQuality);
+                50);
     }
 
     @Test
