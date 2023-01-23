@@ -19,20 +19,11 @@ class GildedRose {
                 items[i].sellIn = items[i].sellIn - 1;
             }
 
-
-            boolean special = items[i].name.equals(AGED_BRIE) 
-                           || items[i].name.equals(BACKSTAGE_PASSES) 
-                           || items[i].name.equals(SULFURAS);
-
-            if (!special && items[i].quality > 0) {
-                if(items[i].sellIn < 0) {
-                    items[i].quality -= 2;
-                } else {
-                    items[i].quality = items[i].quality - 1;
+            if (items[i].name.equals(BACKSTAGE_PASSES)) {
+                if(items[i].quality >= 50) {
+                    break;
                 }
-            } 
-            else if (items[i].name.equals(BACKSTAGE_PASSES) && items[i].quality < 50) {
-                if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
+                else if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
                     items[i].quality += 2;   
                 }
 
@@ -53,12 +44,30 @@ class GildedRose {
                 }
             }
 
-            else if (items[i].name.equals(AGED_BRIE) && items[i].quality < 50) {
-                if(items[i].sellIn < 0) {
+            else if (items[i].name.equals(AGED_BRIE)) {
+                if(items[i].quality >= 50) {
+                    break;
+                }
+                else if(items[i].sellIn < 0) {
                     items[i].quality += 2;
                 }
                 else {
                     items[i].quality++;
+                }
+            }
+
+            else if (items[i].name.equals(SULFURAS)) {
+                break;
+            }
+
+            else {
+                if (items[i].quality <= 0) {
+                    break;
+                }
+                else if(items[i].sellIn < 0) {
+                    items[i].quality -= 2;
+                } else {
+                    items[i].quality = items[i].quality - 1;
                 }
             }
         }
