@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import javax.swing.text.AbstractDocument.BranchElement;
+
 class GildedRose {
 
     private static final int MAX_QUALITY = 50;
@@ -40,55 +42,46 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals(SULFURAS)) {
-                items[i].sellIn = items[i].sellIn - 1;
+            Item item = items[i];
+            if (!item.name.equals(SULFURAS)) {
+                item.sellIn--;
             }
-
-            if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                if(items[i].quality >= MAX_QUALITY) {
-                    break;
-                }
-                else if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
-                    incrementQuality(items[i],2);  
+            if (item.name.equals(BACKSTAGE_PASSES)) {
+                if (item.sellIn < 10 && item.sellIn >= 5) {
+                    incrementQuality(item,2);  
                 }
 
-                else if (items[i].sellIn < 5 && items[i].sellIn >= 0) {
-                    incrementQuality(items[i],3); 
+                else if (item.sellIn < 5 && item.sellIn >= 0) {
+                    incrementQuality(item,3); 
                 }
 
-                else if (items[i].sellIn < 0) {
-                    items[i].quality = MIN_QUALITY;
+                else if (item.sellIn < 0) {
+                    item.quality = MIN_QUALITY;
                 }
 
                 else {
-                    incrementQuality(items[i],1); 
+                    incrementQuality(item,1); 
                 }
             }
 
-            else if (items[i].name.equals(AGED_BRIE)) {
-                if(items[i].quality >= MAX_QUALITY) {
-                    break;
-                }
-                else if(items[i].sellIn < 0) {
-                    incrementQuality(items[i],2); 
+            else if (item.name.equals(AGED_BRIE)) {
+                if(item.sellIn < 0) {
+                    incrementQuality(item,2); 
                 }
                 else {
-                    incrementQuality(items[i],1);
+                    incrementQuality(item,1);
                 }
             }
 
-            else if (items[i].name.equals(SULFURAS)) {
+            else if (item.name.equals(SULFURAS)) {
                 break;
             }
 
             else {
-                if (items[i].quality <= MIN_QUALITY) {
-                    break;
-                }
-                else if(items[i].sellIn < 0) {
-                    decrementQuality(items[i], 2);
+                if(item.sellIn < 0) {
+                    decrementQuality(item, 2);
                 } else {
-                    decrementQuality(items[i], 1);
+                    decrementQuality(item, 1);
                 }
             }
         }
