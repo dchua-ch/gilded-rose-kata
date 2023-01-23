@@ -44,7 +44,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
             if (!item.name.equals(SULFURAS)) {
-                item.sellIn = item.sellIn - 1;
+                item.sellIn--;
             }
             if (item.name.equals(BACKSTAGE_PASSES)) {
                 if (item.sellIn < 10 && item.sellIn >= 5) {
