@@ -33,7 +33,7 @@ class GildedRose {
                 }
 
                 else {
-                    items[i].quality = items[i].quality + 1;
+                    items[i].quality++;
                 }
 
                 if (items[i].quality > 50) {
@@ -41,7 +41,7 @@ class GildedRose {
                 }
             }
             else if (items[i].quality < 50) {
-                items[i].quality = items[i].quality + 1;
+                items[i].quality++;
             }
             
 
@@ -51,13 +51,13 @@ class GildedRose {
 
             if (items[i].sellIn < 0) {
                 if (items[i].name.equals(AGED_BRIE) && items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+                    items[i].quality++;
                 }
                 else if (items[i].name.equals(BACKSTAGE_PASSES)) {
                     items[i].quality = 0;
                 }
                 else if (!special && items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1;
+                    items[i].quality--;
                 }
             }
         }
