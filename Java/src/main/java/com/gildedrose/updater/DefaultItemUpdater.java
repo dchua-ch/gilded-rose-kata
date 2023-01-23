@@ -11,10 +11,7 @@ public class DefaultItemUpdater extends ItemUpdater{
     @Override
     public void updateItem() {
         item.sellIn--;
-        if (item.quality <= MIN_QUALITY) {
-            return;
-        }
-        else if(item.sellIn < 0) {
+        if(item.sellIn < 0) {
             decrementQuality(2);
         } else {
             decrementQuality(1);
