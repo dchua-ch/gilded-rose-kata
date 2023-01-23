@@ -45,10 +45,7 @@ class GildedRose {
             }
 
             if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                if(items[i].quality >= MAX_QUALITY) {
-                    break;
-                }
-                else if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
+                if (items[i].sellIn < 10 && items[i].sellIn >= 5) {
                     incrementQuality(items[i],2);  
                 }
 
@@ -66,10 +63,7 @@ class GildedRose {
             }
 
             else if (items[i].name.equals(AGED_BRIE)) {
-                if(items[i].quality >= MAX_QUALITY) {
-                    break;
-                }
-                else if(items[i].sellIn < 0) {
+                if(items[i].sellIn < 0) {
                     incrementQuality(items[i],2); 
                 }
                 else {
@@ -82,10 +76,7 @@ class GildedRose {
             }
 
             else {
-                if (items[i].quality <= MIN_QUALITY) {
-                    break;
-                }
-                else if(items[i].sellIn < 0) {
+                if(items[i].sellIn < 0) {
                     decrementQuality(items[i], 2);
                 } else {
                     decrementQuality(items[i], 1);
