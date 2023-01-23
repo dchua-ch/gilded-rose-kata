@@ -11,6 +11,7 @@ class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
 
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -56,7 +57,7 @@ class GildedRose {
                 }
 
                 else if (items[i].sellIn < 0) {
-                    items[i].quality = 0;
+                    items[i].quality = MIN_QUALITY;
                 }
 
                 else {
@@ -81,7 +82,7 @@ class GildedRose {
             }
 
             else {
-                if (items[i].quality <= 0) {
+                if (items[i].quality <= MIN_QUALITY) {
                     break;
                 }
                 else if(items[i].sellIn < 0) {
