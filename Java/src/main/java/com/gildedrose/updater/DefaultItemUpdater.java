@@ -2,14 +2,15 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class GenericItemUpdater extends ItemUpdater{
+public class DefaultItemUpdater extends ItemUpdater{
 
-    public GenericItemUpdater(Item item) {
+    public DefaultItemUpdater(Item item) {
         super(item);
     }
 
     @Override
     public void updateItem() {
+        item.sellIn--;
         if (item.quality <= MIN_QUALITY) {
             return;
         }
