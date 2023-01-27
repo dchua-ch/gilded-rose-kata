@@ -10,30 +10,23 @@ public abstract class ItemUpdater {
 
     protected final Item item;
 
-    public ItemUpdater(Item item) {
+    protected ItemUpdater(Item item) {
         this.item = item;
     }
 
     public abstract void updateItem();
 
     protected void incrementQuality(int amount) {
-        for (int i = 0; i < amount; i++) {
-            item.quality++;
-            if (item.quality > MAX_QUALITY) {
-                item.quality--;
-                return;
-            }
+        item.quality += amount;
+        if (item.quality > MAX_QUALITY) {
+            item.quality = MAX_QUALITY;
         }
     }
 
     protected void decrementQuality(int amount) {
-        for(int i = 0; i < amount; i++) {
-            item.quality--;
-            if (item.quality < MIN_QUALITY) {
-                item.quality++;
-                return;
-            }
+        item.quality -= amount;
+        if(item.quality < amount) {
+            item.quality = MIN_QUALITY;
         }
     }
-    
 }
