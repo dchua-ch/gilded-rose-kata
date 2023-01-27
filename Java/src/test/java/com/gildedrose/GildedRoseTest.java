@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
+    /**
+     *
+     */
+    private static final String CONJURED = "Conjured";
+
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
    
     private static final String AGED_BRIE = "Aged Brie";
@@ -71,12 +76,12 @@ class GildedRoseTest {
     @Test
     void passedSellByDateTestNonNegativeQualityTest() {
         final int initialSellIn = 0;
-        final int initialQuality = 0;
+        final int initialQuality = 1;
         baseTest(FOO,
                  initialSellIn,
                  initialSellIn-1,
                  initialQuality,
-                 initialQuality);
+                 0);
     }
     @Test
     void agedBrieTest() {
@@ -118,13 +123,13 @@ class GildedRoseTest {
     @Test
     void agedBriePassedSellByQualityNotAboveFiftyTest() {
         final int initialSellIn = 0;
-        final int initialQuality = 50;
+        final int initialQuality = 49;
 
         baseTest(AGED_BRIE,
                 initialSellIn,
                 initialSellIn-1,
                 initialQuality,
-                initialQuality);
+                50);
     }
 
     @Test
@@ -233,6 +238,28 @@ class GildedRoseTest {
                 initialSellIn - 1,
                 initialQuality,
                 0);
+    }
+
+    @Test
+    void conjuredItemTest() {
+        final int initialSellIn = 1;
+        final int initialQuality = 20;
+        baseTest(CONJURED, 
+                initialSellIn,
+                initialSellIn - 1,
+                initialQuality,
+                initialQuality - 2);
+    }
+
+    @Test
+    void conjuredItemPassedSellByDateTest() {
+        final int initialSellIn = 0;
+        final int initialQuality = 20;
+        baseTest(CONJURED, 
+                initialSellIn,
+                initialSellIn - 1,
+                initialQuality,
+                initialQuality - 4);
     }
 
     @Test
