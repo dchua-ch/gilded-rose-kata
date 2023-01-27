@@ -2,9 +2,9 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class ConjuredItemUpdater extends ItemUpdater{
+class ConjuredItemUpdater extends ItemUpdater{
 
-    public ConjuredItemUpdater(Item item) {
+    ConjuredItemUpdater(Item item) {
         super(item);
     }
 

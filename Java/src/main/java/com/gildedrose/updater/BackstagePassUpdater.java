@@ -2,9 +2,9 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class BackstagePassUpdater extends ItemUpdater{
+class BackstagePassUpdater extends ItemUpdater{
 
-    public BackstagePassUpdater(Item item) {
+    BackstagePassUpdater(Item item) {
         super(item);
     }
 
