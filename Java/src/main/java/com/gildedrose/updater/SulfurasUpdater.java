@@ -10,7 +10,8 @@ class SulfurasUpdater extends ItemUpdater{
 
     @Override
     public void updateItem() {
-        return;
+      // Sulfuras is legendary and never has to be sold
+      // its quality never decreases
     }
     
 }
