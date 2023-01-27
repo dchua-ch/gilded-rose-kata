@@ -2,9 +2,9 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class DefaultItemUpdater extends ItemUpdater{
+class DefaultItemUpdater extends ItemUpdater{
 
-    public DefaultItemUpdater(Item item) {
+    DefaultItemUpdater(Item item) {
         super(item);
     }
 

@@ -2,9 +2,9 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class AgedBrieUpdater extends ItemUpdater{
+class AgedBrieUpdater extends ItemUpdater{
 
-    public AgedBrieUpdater(Item item) {
+    AgedBrieUpdater(Item item) {
         super(item);
     }
 

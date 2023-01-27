@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+
 import com.gildedrose.updater.ItemUpdater;
 import com.gildedrose.updater.ItemUpdaterFactory;
 
@@ -17,5 +18,6 @@ class GildedRose {
             ItemUpdater itemUpdater = itemUpdaterFactory.createItemUpdater(items[i]);
             itemUpdater.updateItem();
         }
+     
     }
 }
