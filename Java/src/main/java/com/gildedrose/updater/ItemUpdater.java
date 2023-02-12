@@ -25,7 +25,7 @@ public abstract class ItemUpdater {
 
     protected void decrementQuality(int amount) {
         item.quality -= amount;
-        if(item.quality < amount) {
+        if(item.quality < MIN_QUALITY) {
             item.quality = MIN_QUALITY;
         }
     }
